@@ -65,7 +65,7 @@ msg_info "Creating Redlib Service"
 cat <<EOF >/etc/init.d/redlib
 #!/sbin/openrc-run
 
-name="Redlib
+name="Redlib"
 description="Redlib Service"
 command="/opt/redlib/redlib"
 pidfile="/run/redlib.pid"
