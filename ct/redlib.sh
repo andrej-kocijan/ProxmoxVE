@@ -21,7 +21,7 @@ catch_errors
 
 function update_script() {
 
-  if [[ ! -d /opt/redlib/redlib ]]; then
+  if [[ ! -d /opt/redlib ]]; then
       msg_error "No ${APP} Installation Found!"
       exit
   fi
