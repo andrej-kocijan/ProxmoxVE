@@ -20,13 +20,12 @@ color
 catch_errors
 
 function update_script() {
-
+  header_info
   if [[ ! -d /opt/redlib ]]; then
       msg_error "No ${APP} Installation Found!"
       exit
   fi
 
-  header_info
   msg_info "Updating Alpine Packages"
   $STD apk -U upgrade
   msg_ok "Updated Alpine Packages"
