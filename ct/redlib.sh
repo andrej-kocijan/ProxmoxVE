@@ -3,7 +3,7 @@ source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxV
 # Copyright (c) 2021-2025 community-scripts ORG
 # Author: andrej-kocijan (Andrej Kocijan)
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
-# Source: https://github.com/redlib-org/redlib/releases
+# Source: https://github.com/redlib-org/redlib
 
 APP="Redlib"
 var_tags="${var_tags:-alpine;frontend}"
