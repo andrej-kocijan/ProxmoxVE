@@ -23,7 +23,7 @@ msg_info "Installing Redlib"
 mkdir /opt/redlib
 $STD tar -xzf /tmp/redlib-x86_64-unknown-linux-musl.tar.gz -C /opt/redlib
 $STD rm /tmp/redlib-x86_64-unknown-linux-musl.tar.gz
-echo "${RELEASE}" >/opt/redlib.txt
+echo "${RELEASE}" >/opt/${APP}_version.txt
 cat <<EOF >/opt/redlib/redlib.conf
 ############################################
 # Redlib Instance Configuration File

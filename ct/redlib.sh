@@ -52,7 +52,7 @@ function update_script() {
     echo "${RELEASE}" >/opt/${APP}_version.txt
     msg_ok "Update Successful"
   else
-      msg_ok "No update required. ${APP} is already at v${RELEASE}"
+      msg_ok "No update required. ${APP} is already at ${RELEASE}"
   fi
   exit
 }
