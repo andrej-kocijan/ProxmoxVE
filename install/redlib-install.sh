@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # Copyright (c) 2021-2025 community-scripts ORG
-# Author: Andrej Kocijan (andrej-kocijan)
+# Author: andrej-kocijan (Andrej Kocijan)
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
-# Source: https://github.com/redlib-org/redlib/releases
+# Source: https://github.com/redlib-org/redlib
 
 source /dev/stdin <<<"$FUNCTIONS_FILE_PATH"
 color

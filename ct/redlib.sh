@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 source <(curl -fsSL https://raw.githubusercontent.com/andrej-kocijan/ProxmoxVE/refs/heads/redlib-test/misc/build.func)
 # Copyright (c) 2021-2025 community-scripts ORG
-# Author: Andrej Kocijan (andrej-kocijan)
+# Author: andrej-kocijan (Andrej Kocijan)
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
-# Source: https://github.com/redlib-org/redlib/releases
+# Source: https://github.com/redlib-org/redlib
 
 APP="Redlib"
 var_tags="${var_tags:-alpine;frontend}"
 var_cpu="${var_cpu:-1}"
 var_ram="${var_ram:-512}"
-var_disk="${var_disk:-2}"
+var_disk="${var_disk:-1}"
 var_os="${var_os:-alpine}"
 var_version="${var_version:-3.22}"
 var_unprivileged="${var_unprivileged:-1}"
