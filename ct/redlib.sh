@@ -21,30 +21,40 @@ catch_errors
 
 function update_script() {
   header_info
+  check_container_storage
+  check_container_resources
+
   if [[ ! -d /opt/redlib ]]; then
       msg_error "No ${APP} Installation Found!"
       exit
   fi
 
-  msg_info "Updating Alpine Packages"
-  $STD apk -U upgrade
-  msg_ok "Updated Alpine Packages"
+  RELEASE=$(curl -s https://api.github.com/repos/redlib-org/redlib/releases/latest | grep "tag_name" | awk '{print substr($2, 2, length($2)-3) }')
+  if [[ "${RELEASE}" != "$(cat /opt/${APP}_version.txt)" ]] || [[ ! -f /opt/${APP}_version.txt ]]; then
+    msg_info "Updating Alpine Packages"
+    $STD apk -U upgrade
+    msg_ok "Updated Alpine Packages"
 
-  msg_info "Stopping ${APP} Service"
-  $STD rc-service redlib stop
-  msg_info "Stopped ${APP} Service"
+    msg_info "Stopping ${APP} Service"
+    $STD rc-service redlib stop
+    msg_info "Stopped ${APP} Service"
 
-  msg_info "Updating ${APP}"
-  $STD curl -fsSL -o /tmp/redlib-x86_64-unknown-linux-musl.tar.gz \
-  "https://github.com/redlib-org/redlib/releases/latest/download/redlib-x86_64-unknown-linux-musl.tar.gz"
-  $STD tar -xzf /tmp/redlib-x86_64-unknown-linux-musl.tar.gz -C /opt/redlib
-  $STD rm /tmp/redlib-x86_64-unknown-linux-musl.tar.gz
-  msg_ok "Updated ${APP}"
+    msg_info "Updating ${APP}"
+    $STD curl -fsSL -o /tmp/redlib-x86_64-unknown-linux-musl.tar.gz \
+    "https://github.com/redlib-org/redlib/releases/latest/download/redlib-x86_64-unknown-linux-musl.tar.gz"
+    $STD tar -xzf /tmp/redlib-x86_64-unknown-linux-musl.tar.gz -C /opt/redlib
+    $STD rm /tmp/redlib-x86_64-unknown-linux-musl.tar.gz
+    msg_ok "Updated ${APP}"
 
-  msg_info "Starting ${APP} Service"
-  $STD rc-service redlib start
-  msg_ok "Started ${APP} Service"
+    msg_info "Starting ${APP} Service"
+    $STD rc-service redlib start
+    msg_ok "Started ${APP} Service"
 
+    echo "${RELEASE}" >/opt/${APP}_version.txt
+    msg_ok "Update Successful"
+  else
+      msg_ok "No update required. ${APP} is already at v${RELEASE}"
+  fi
   exit
 }
 

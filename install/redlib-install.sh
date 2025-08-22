@@ -14,6 +14,7 @@ network_check
 update_os
 
 msg_info "Downloading Redlib"
+RELEASE=$(curl -s https://api.github.com/repos/redlib-org/redlib/releases/latest | grep "tag_name" | awk '{print substr($2, 2, length($2)-3) }')
 $STD curl -fsSL -o /tmp/redlib-x86_64-unknown-linux-musl.tar.gz \
 "https://github.com/redlib-org/redlib/releases/latest/download/redlib-x86_64-unknown-linux-musl.tar.gz"
 msg_ok "Downloaded Redlib"
@@ -22,6 +23,7 @@ msg_info "Installing Redlib"
 mkdir /opt/redlib
 $STD tar -xzf /tmp/redlib-x86_64-unknown-linux-musl.tar.gz -C /opt/redlib
 $STD rm /tmp/redlib-x86_64-unknown-linux-musl.tar.gz
+echo "${RELEASE}" >/opt/$redlib_version.txt
 cat <<EOF >/opt/redlib/redlib.conf
 ############################################
 # Redlib Instance Configuration File
